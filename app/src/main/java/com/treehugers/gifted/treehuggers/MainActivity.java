@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupBottomBar(){
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.coupons, R.drawable.ic_coupon,R.color.colorAccent);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.map, R.drawable.ic_map, R.color.colorAccent);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.coupons, R.drawable.ic_wallet,R.color.colorAccent);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.map, R.drawable.ic_map_marker, R.color.colorAccent);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.leaderboard, R.drawable.ic_leaderboard, R.color.colorAccent);
 
         viewpager.setOffscreenPageLimit(4);
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this);
         viewpager.setAdapter(viewPagerAdapter);
 
-        bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
+        bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item3);
 
 
