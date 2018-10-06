@@ -8,4 +8,4 @@ Features:
 	* Leaderboardai - kas turi daugiausia tasku
 	* Uz vaiksciojima gauni taskus
 	* Kas yra top leaderboarduos, siulo Kauno savivaldybei kokius parkus atnaujint
-
+	* Informacija apie medį jį pahuginus
