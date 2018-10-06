@@ -4,4 +4,7 @@
     <string name="log_in">Login</string>
     <string name="no_account_click_prompt">Click here to register!</string>
     <string name="password">Password</string>
+    <string name="coupons">Coupons</string>
+    <string name="map">Map</string>
+    <string name="leaderboard">Leaderboard</string>
 </resources>
