@@ -8,4 +8,4 @@ Features:
 	* Leaderboardai - kas turi daugiausia tasku
 	* Uz vaiksciojima gauni taskus
 	* Kas yra top leaderboarduos, siulo Kauno savivaldybei kokius parkus atnaujint
-	* Medžio pavadinimas, kamieno storis, amžius(jei yra) jį pahuginus
+	* Informacija apie medį jį pahuginus
