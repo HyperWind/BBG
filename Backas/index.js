@@ -2,34 +2,30 @@
 const express    = require('express');        // call express
 const app        = express();                 // define our app using express
 const bodyParser = require('body-parser');
-const firebase =   require('firebase');
+
+
+const routes =  require('./src/routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // const port = process.env.PORT || 8080;
-const port = 3000;
-
-const config = {databaseURL: "https://kaunas-hackathon-2018.firebaseio.com"};
-firebase.initializeApp(config);
-
-const getTrees = async () => {
-  const snapshot = await firebase.database().ref('/visit/zeldiniai/').once('value');
-  const json = snapshot.val();
-
-  return json;
-}
+const port = 8080;
 
 var router = express.Router();             
+routes(router);
 
-router.get('/', async function(req, res, next) {
-  try{
-    const medziai = await getTrees();
-    res.json(medziai);   
-  } catch(e) {
-    next(e);
-  }
-});
+// login
+// trees
+// trees, not-hugged
+// user coupon inventory
+// leaderboard
+// goals
+// treehugged -> cheque
+// treeinfo
+// couponinfo
+// userinfo: taskai
+//? business
 
 app.use('/api', router);
 
