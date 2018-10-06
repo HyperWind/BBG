@@ -1,6 +1,8 @@
 TREEHUGGERS
 ===========
 
+# Kas gali nugalėti meilę (medžiui)? #
+
 Features:
 
 	* Hugini medzius ir gauni taskus
