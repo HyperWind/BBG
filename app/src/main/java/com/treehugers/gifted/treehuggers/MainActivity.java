@@ -38,6 +38,8 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.treehugers.gifted.treehuggers.fragments.ViewPagerAdapter;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -55,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
+
+
         Window wind = getWindow();
-
-        //wind.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         wind.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
         setContentView(R.layout.activity_main);
@@ -68,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
         initializeViews();
         setupBottomBar();
-        //setFonts();
 
+        ArrayList<Tree> trees = (ArrayList<Tree>) getIntent().getSerializableExtra("TreeList");
+        viewPagerAdapter.mapSectionFragment.allTrees = trees;
 
     }
 
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         moveTaskToBack(true);
     }
+
+
 
 
 
