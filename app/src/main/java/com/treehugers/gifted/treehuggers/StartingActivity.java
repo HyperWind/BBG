@@ -22,7 +22,7 @@ public class StartingActivity extends AwesomeSplash {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
-        configSplash.setBackgroundColor(R.color.splashBackground);
+        configSplash.setBackgroundColor(R.color.colorPrimary);
         configSplash.setAnimCircularRevealDuration(1500);
         configSplash.setRevealFlagX(Flags.REVEAL_RIGHT);
         configSplash.setRevealFlagY(Flags.REVEAL_BOTTOM);
@@ -33,7 +33,7 @@ public class StartingActivity extends AwesomeSplash {
 
         configSplash.setTitleSplash("Tree Hugger");
         configSplash.setTitleTextColor(R.color.white);
-        configSplash.setTitleTextSize(20f);
+        configSplash.setTitleTextSize(25f);
         configSplash.setAnimTitleDuration(500);
         configSplash.setAnimTitleTechnique(Techniques.SlideInUp);
 
@@ -46,7 +46,7 @@ public class StartingActivity extends AwesomeSplash {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(StartingActivity.this,MainActivity.class));
+                startActivity(new Intent(StartingActivity.this,LoginActivity.class));
             }
         }, StartingActivity.AFTER_ANIMATION_DELAY);
 

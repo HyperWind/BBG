@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TreeHuggers</string>
+    <string name="email">Email</string>
+    <string name="log_in">Login</string>
+    <string name="no_account_click_prompt">Click here to register!</string>
+    <string name="password">Password</string>
 </resources>
