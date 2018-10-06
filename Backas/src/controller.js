@@ -28,4 +28,19 @@ const getTrees = async () => {
   return _.sampleSize(filteredJson, 20);
 }
 
+const getTree = async (res) => {
+  const trees = getTrees();
+  const mapped_params = res.split(",");
+
+  return trees.map((tree) => {
+    var newtree = {}
+
+    mapped_params.forEach((param) => {
+	newtree[param] = tree[param];
+    });
+
+    return newtree;
+  });
+}
+
 module.exports = {getTrees};

@@ -9,6 +9,14 @@ module.exports = api => {
       next(e);
     }
   });
+  api.get('/tree/:json', async function(req, res, next) {
+     try {
+      const tree_ob = await getTree(req.params);
+      res.json(tree_ob);
+    } catch(e) {
+      next(e);
+    }
+  });
   api.get('/login', function(req, res) {
     res.json({
       username: "Sveiki"
