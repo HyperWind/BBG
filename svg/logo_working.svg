@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 36.285213 45.032394"
+   height="45.032394mm"
+   width="36.285213mm">
+  <title
+     id="title4810">main logo</title>
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>main logo</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0.15109271,-0.53253708)"
+     id="layer1" />
+  <g
+     transform="translate(0.15109271,-0.53253708)"
+     id="layer3" />
+  <g
+     transform="translate(0.15109271,-0.53253708)"
+     id="layer2">
+    <path
+       id="rect10"
+       d="M 17.991462,0.53253708 3.8491773,14.674826 h 5.596035 l -7.596425,6.654892 h 7.411945 L -0.15109271,28.66622 H 12.857932 l 3.13366,3.133659 v 2.771407 l -3.19412,3.193603 -6.6156167,-6.615615 -3.535188,3.535701 9.5766747,9.576676 2.23242,-2.232422 3.5357,3.535701 3.53571,-3.535701 2.23242,2.232422 11.90935,-11.909351 -0.002,-0.0021 -2.33474,2.334742 -3.53363,-3.533635 -6.61356,6.613549 -3.1936,-3.193603 v -2.771392 l 3.13378,-3.133658 h 13.00893 l -9.41183,-7.336501 h 7.41195 l -7.59641,-6.654859 h 5.59605 z"
+       style="fill:#ffffff;stroke-width:0.26458332" />
+  </g>
+</svg>
