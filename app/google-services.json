@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "16797865995",
+    "firebase_url": "https://tree-hugger-1538831860685.firebaseio.com",
+    "project_id": "tree-hugger-1538831860685",
+    "storage_bucket": "tree-hugger-1538831860685.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16797865995:android:acf91fbc439adbb1",
+        "android_client_info": {
+          "package_name": "com.treehugers.gifted.treehuggers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16797865995-2hjf82js56pc1jikhgbube97o1vd81gq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.treehugers.gifted.treehuggers",
+            "certificate_hash": "b1734f6d5595e10a81bb9f7b909af3930aa43637"
+          }
+        },
+        {
+          "client_id": "16797865995-24qhbpksc19t9m3h91f18de3fr6p6n1c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe1tQKPGcFsZombYA-TjUj903sDIEX2pY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16797865995-24qhbpksc19t9m3h91f18de3fr6p6n1c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
