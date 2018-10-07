@@ -28,19 +28,21 @@ const getTrees = async () => {
   return _.sampleSize(filteredJson, 20);
 }
 
-const getTree = async (res) => {
-  const trees = getTrees();
-  const mapped_params = res.split(",");
+const getTree = async (params) => {
+  const snapshot = await firebase.database().ref('/visit/zeldiniai/').once('value');
+  const json = snapshot.val().features;
 
-  return trees.map((tree) => {
+  const mapped_params = params.split(",");
+
+  return json.map((tree) => {
     var newtree = {}
 
     mapped_params.forEach((param) => {
-	newtree[param] = tree[param];
+	    newtree[param] = tree[param];
     });
 
     return newtree;
   });
 }
 
-module.exports = {getTrees};
+module.exports = {getTrees, getTree};
