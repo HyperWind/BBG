@@ -29,6 +29,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
@@ -37,6 +38,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,8 +53,10 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class MapSectionFragment extends Fragment {
 
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 100;
     SupportMapFragment map_fragment;
     public static GoogleMap myMap;
+    private FusedLocationProviderClient mFusedLocationClient;
     private GoogleApiClient mGoogleApiClient;
     private GoogleApiClient.ConnectionCallbacks connectionCallbacks;
     private GoogleApiClient.OnConnectionFailedListener connectionFailedListener;
@@ -60,7 +64,7 @@ public class MapSectionFragment extends Fragment {
     private double longtitude = 0;
     private double latitude = 0;
     private Bitmap bitmap;
-    private Location mLastLocation;
+
 
     @Nullable
     @Override
@@ -69,70 +73,124 @@ public class MapSectionFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_map_section, container, false);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MapSectionFragment.this.getContext());
 
 
-        connectionCallbacks = new GoogleApiClient.ConnectionCallbacks() {
-            @Override
-            public void onConnected(@Nullable Bundle bundle) {
-                Toast.makeText(MapSectionFragment.this.getContext(),"Connected successfuly",Toast.LENGTH_LONG).show();
-
-                if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-
-                    ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
-                            LocationService.MY_PERMISSION_ACCESS_COURSE_LOCATION );
-                }
-                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                        mGoogleApiClient);
-            }
-
-            @Override
-            public void onConnectionSuspended(int i) {
-
-            }
-        };
-
-        connectionFailedListener = new GoogleApiClient.OnConnectionFailedListener() {
-            @Override
-            public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                Toast.makeText(MapSectionFragment.this.getContext(),"Failed to connect to google maos",Toast.LENGTH_LONG).show();
-            }
-        };
-
-        mGoogleApiClient = new GoogleApiClient.Builder(MapSectionFragment.this.getContext())
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(connectionCallbacks)
-                .addOnConnectionFailedListener(connectionFailedListener)
-                .build();
 
         googleMaps(allTrees);
 
+        Log.i("TEST", String.valueOf(checkLocationPermission()));
+        if(checkLocationPermission()){
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(MapSectionFragment.this.getActivity(), new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+
+                            Log.i("TEST", "SUCCESSSSS");
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null && myMap!=null) {
 
 
+                        Log.i("TEST", "CURRENT LOCATION IS: " + "Longtitude: " + location.getLongitude() + " | " + "Longtitude: " + location.getLatitude());
+                                LatLng coordinate = new LatLng(location.getLatitude(), location.getLongitude()); //Store these lat lng values somewhere. These should be constant.
+                                CameraUpdate zoomLocation = CameraUpdateFactory.newLatLngZoom(
+                                        coordinate, 19);
+                                myMap.animateCamera(zoomLocation);
 
-
-
-
-/*
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(MapSectionFragment.this.getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            // Logic to handle location object
+                            }
                         }
-                    }
-                });
-*/
+                    });
+        }else{
+
+        }
+
+
         return view;
+    }
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(MapSectionFragment.this.getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MapSectionFragment.this.getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(MapSectionFragment.this.getContext())
+                        .setTitle("Location permission")
+                        .setMessage("Provide your location for tree hugging")
+                        .setPositiveButton("Ofcourse!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(MapSectionFragment.this.getActivity(),
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(MapSectionFragment.this.getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(MapSectionFragment.this.getContext(),
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                        //Request location updates:
+                        startListeningForLocation();
+                    }
+
+                } else {
+
+                   //Denied permission
+                    System.exit(0);
+                    //todo: handle
+
+                }
+                return;
+            }
+
+        }
     }
 
 
 
+    private void startListeningForLocation(){
+       Log.i("TEST", "Start listening for locations");
 
+
+
+    }
 
     private void googleMaps(final ArrayList<Tree> allTrees) {
-        Log.i("TEST", "LIST SIZE IS: " + allTrees.size());
+        //Log.i("TEST", "LIST SIZE IS: " + allTrees.size());
         FragmentManager fm = getActivity().getSupportFragmentManager();
         CameraPosition cp = new CameraPosition.Builder()
                 .target(new LatLng(54.6, 25.27)) //Just a random starting point. Will be changed in reloadData()
@@ -153,10 +211,10 @@ public class MapSectionFragment extends Fragment {
                         if(MapSectionFragment.myMap != null)
                         {
                             for(int i = 0; i<allTrees.size(); i++){
-                                Log.i("TEST", String.valueOf(allTrees.get(i).latitude));
+                               // Log.i("TEST", String.valueOf(allTrees.get(i).latitude));
                                 LatLng sydney = new LatLng(allTrees.get(i).longtitude,allTrees.get(i).latitude);
                                 MapSectionFragment.myMap.addMarker(new MarkerOptions().position(sydney)
-                                        .title("PAF-KIET")).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.treeunhugged));
+                                        .title("PAF-KIET")).setIcon(BitmapDescriptorFactory.fromResource(allTrees.get(i).hugged ? R.drawable.treehugged: R.drawable.treeunhugged));
                             }
 
 

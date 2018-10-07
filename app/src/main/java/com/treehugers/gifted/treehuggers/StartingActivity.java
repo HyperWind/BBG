@@ -27,7 +27,7 @@ public class StartingActivity extends AwesomeSplash {
         configSplash.setRevealFlagX(Flags.REVEAL_RIGHT);
         configSplash.setRevealFlagY(Flags.REVEAL_BOTTOM);
 
-        configSplash.setLogoSplash(R.drawable.ic_app_icon);
+        configSplash.setLogoSplash(R.drawable.ic_logo_working);
         configSplash.setAnimLogoSplashDuration(500);
         configSplash.setAnimLogoSplashTechnique(Techniques.FadeIn);
 

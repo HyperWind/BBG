@@ -6,9 +6,11 @@ public class Tree implements Serializable {
 
     public double longtitude;
     public double latitude;
+    public boolean hugged;
 
-    public Tree(double longtitude, double latitude){
+    public Tree(double longtitude, double latitude, boolean hugged){
         this.latitude = latitude;
         this.longtitude = longtitude;
+        this.hugged = hugged;
     }
 }

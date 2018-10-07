@@ -113,8 +113,8 @@ public class ServerManager extends AsyncTask<String,Void,Void> {
                     JSONObject jsonObj = jsonArr.getJSONObject(i);
                     double longtitude = jsonObj.getDouble("longitude");
                     double latitude = jsonObj.getDouble("latitude");
-                    Log.i("TEST", "Latitude: " + latitude + " | " + "Longtitude: " + longtitude);
-                    trees.add(new Tree(longtitude,latitude));
+                    boolean hugged = jsonObj.getBoolean("hugged");
+                    trees.add(new Tree(longtitude,latitude,hugged));
                 }
             }catch (Exception e){
 
