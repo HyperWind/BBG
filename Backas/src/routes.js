@@ -11,7 +11,7 @@ module.exports = api => {
   });
   api.get('/tree/:json', async function(req, res, next) {
      try {
-      const tree_ob = await getTree(req.params);
+      const tree_ob = await getTree(req.params.json);
       res.json(tree_ob);
     } catch(e) {
       next(e);
