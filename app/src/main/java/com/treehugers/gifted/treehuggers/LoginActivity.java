@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
@@ -102,7 +103,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+
+        ServerManager serverManager = new ServerManager(LoginActivity.this);
+        serverManager.setOnFinishListener(new OnFinishListener() {
+            @Override
+            public void onFinish(int responseCode, ArrayList<Tree> trees) {
+                Log.i("TEST", "FinishedFetching");
+                startActivity(new Intent(LoginActivity.this,MainActivity.class).putExtra("TreeList",trees));
+            }
+        });
+        serverManager.execute(ServerManager.FETCH_TREES);
+
+
 
     }
 
