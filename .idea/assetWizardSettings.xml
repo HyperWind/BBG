@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_normal_tree_working" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/svg/normal-tree_working.svg" />
+                            <entry key="outputName" value="ic_logo_working" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/svg/logo_working.svg" />
                           </map>
                         </option>
                       </PersistentState>
